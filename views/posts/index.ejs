@@ -9,7 +9,7 @@
     <h1>Posts</h1>
     <ul>
       <% for(const p of posts) {%>
-      <li><%= p.title %> - <b><%= p.username %></b></li>
+      <li><%= p.title %> - <b><%= p.username %></b> <a href="/posts/<%= p.id %>">more</a></li>
       <% } %>
     </ul>
     <a href="/posts/new">New Post</a>

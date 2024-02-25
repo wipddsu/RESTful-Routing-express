@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Show Post</title>
+  </head>
+  <body>
+    <h2 style="font-size: 14px">User id: <%= post.id %></h2>
+    <h1 style="display: inline-block"><%= post.title %></h1>
+    <span> - <%= post.username %></span>
+    <hr />
+    <p style="font-size: 20px"><%= post.content %></p>
+    <a href="/posts/<%= post.id %>/edit">Edit post</a>
+  </body>
+</html>

@@ -1,8 +1,10 @@
 const express = require('express');
+const methodOverride = require('method-override');
 const app = express();
 const path = require('path');
 const { v4: uuid } = require('uuid');
 
+app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -45,6 +47,28 @@ app.get('/posts/new', (req, res) => {
 app.post('/posts', (req, res) => {
   const { username, title, content } = req.body;
   posts.push({ username, title, content, id: uuid() });
+  res.redirect('/posts');
+});
+
+app.get('/posts/:id', (req, res) => {
+  const { id } = req.params;
+  const post = posts.find((p) => p.id === id);
+  res.render('posts/show', { post });
+});
+
+app.get('/posts/:id/edit', (req, res) => {
+  const { id } = req.params;
+  const post = posts.find((p) => p.id === id);
+  res.render('posts/edit', { post });
+});
+
+app.patch('/posts/:id', (req, res) => {
+  const { id } = req.params;
+  const { title: newTitle, content: newContent } = req.body;
+  const foundPost = posts.find((p) => p.id === id);
+  foundPost.title = newTitle;
+  foundPost.content = newContent;
+  console.log(foundPost);
   res.redirect('/posts');
 });
 
