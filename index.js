@@ -68,11 +68,15 @@ app.patch('/posts/:id', (req, res) => {
   const foundPost = posts.find((p) => p.id === id);
   foundPost.title = newTitle;
   foundPost.content = newContent;
-  console.log(foundPost);
+  res.redirect('/posts');
+});
+
+app.delete('/posts/:id', (req, res) => {
+  const { id } = req.params;
+  posts = posts.filter((p) => p.id !== id);
   res.redirect('/posts');
 });
 
 app.listen(3000, () => {
   console.log('ON PORT 3000!');
 });
-//

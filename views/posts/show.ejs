@@ -11,7 +11,10 @@
     <span> - <%= post.username %></span>
     <hr />
     <p style="font-size: 20px"><%= post.content %></p>
-    <a href="/posts/<%= post.id %>/edit">Edit post</a>
+    <a href="/posts/<%= post.id %>/edit" style="display: block">Edit post</a>
+    <br />
+    <form method="POST" action="/posts/<%= post.id %>?_method=DELETE">
+      <button>Delete</button>
+    </form>
   </body>
 </html>
-//
