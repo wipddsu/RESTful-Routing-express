@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Post</title>
+  </head>
+  <body>
+    <h1>Create a New Post</h1>
+    <form action="/posts" method="post">
+      <section>
+        <label for="username"><b>Usernam</b>e</label>
+        <br />
+        <textarea
+          id="username"
+          name="username"
+          cols="30"
+          rows="1"
+          placeholder="Username"
+          style="resize: none"
+        ></textarea>
+      </section>
+      <br />
+      <section>
+        <label for="title"><b>Title</b></label>
+        <br />
+        <textarea id="title" name="title" cols="30" rows="1" placeholder="Title" style="resize: none"></textarea>
+      </section>
+      <br />
+      <section>
+        <label for="content"><b>Content</b></label>
+        <br />
+        <textarea id="content" name="content" cols="30" rows="5" placeholder="Content"></textarea>
+      </section>
+      <br />
+      <button>Submit</button>
+    </form>
+  </body>
+</html>

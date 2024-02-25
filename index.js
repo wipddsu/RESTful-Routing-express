@@ -1,39 +1,51 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const { v4: uuid } = require('uuid');
 
+app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 let posts = [
   {
-    id: 1,
+    id: uuid(),
     username: 'Todd',
     title: 'lol',
-    text: 'lol that is so funny!',
+    content: 'lol that is so funny!',
   },
   {
-    id: 2,
+    id: uuid(),
     username: 'Skyler',
     title: '안녕하세요',
-    text: 'I like to go birdwatching with my dog',
+    content: 'I like to go birdwatching with my dog',
   },
   {
-    id: 3,
+    id: uuid(),
     username: 'Sk8erBoi',
     title: '가입인사 드립니다',
-    text: 'Plz delete your account, Todd',
+    content: 'Plz delete your account, Todd',
   },
   {
-    id: 4,
+    id: uuid(),
     username: 'onlysayswoof',
     title: '요즘 날이 너무 춥네요',
-    text: 'woof woof woof',
+    content: 'woof woof woof',
   },
 ];
 
 app.get('/posts', (req, res) => {
   res.render('posts/index', { posts });
+});
+
+app.get('/posts/new', (req, res) => {
+  res.render('posts/new', { posts });
+});
+
+app.post('/posts', (req, res) => {
+  const { username, title, content } = req.body;
+  posts.push({ username, title, content, id: uuid() });
+  res.redirect('/posts');
 });
 
 app.listen(3000, () => {
